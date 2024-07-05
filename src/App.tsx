@@ -81,7 +81,7 @@ export default function App() {
       buttons: [
         {
           text: "Ver Folleto",
-          urlRedirect: ""
+          urlRedirect: "https://drive.google.com/file/d/1090SwYSfj2O7heh6G-QUC230bEIdl6Z1/view?usp=share_link"
         },
         {
           text: "Ver Paper",
