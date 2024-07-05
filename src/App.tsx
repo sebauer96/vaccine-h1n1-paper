@@ -1,6 +1,6 @@
-// Photos from https://citizenofnowhe.re/lines-of-the-city
 import "./index.css";
 import { useRef } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import {
   motion,
   useScroll,
@@ -8,11 +8,18 @@ import {
   useTransform,
   MotionValue
 } from "framer-motion";
+import IntroInfluenza from "./components/IntroInfluenza";
+import LabTests from "./components/LabTests";
+import ScrollToTop from "./components/ScrollTop";
+import StudyObjective from "./components/StudyObjective";
+import VacuumDesign from "./components/VacuumDesign";
+import ResponseCelular from "./components/ResponseCelular";
+import MouseStudy from "./components/MouseStudy";
 
 export interface Section {
   id: number;
   text?: string;
-  buttons: Array<{ text: string, urlRedirect: string }>
+  buttons: Array<{ text: string, urlRedirect?: string, component?: JSX.Element }>
   imgSrc?: string;
 }
 
@@ -31,18 +38,26 @@ function Section({ section }: { section: Section }) {
       <motion.h2 style={{ y }}>{section.text}</motion.h2>
       <div className="container" ref={ref}>
         {section.imgSrc && (
-          <img src={`/${section.imgSrc}`} alt="A London skyscraper" />
+          <img src={`/${section.imgSrc}`} alt={section.text} />
         )}
         {section.buttons && section.buttons.length > 0 && (
           <div className="container-button">
             {section.buttons.map((button, index) => (
-              <motion.button
-                key={index}
-                style={{ y: yB }}
-                onClick={() => window.location.href = button.urlRedirect}
-              >
-                {button.text}
-              </motion.button>
+              button.component ? (
+                <Link key={index} to={button.urlRedirect!}>
+                  <motion.button style={{ y: yB }}>
+                    {button.text}
+                  </motion.button>
+                </Link>
+              ) : (
+                <motion.button
+                  key={index}
+                  style={{ y: yB }}
+                  onClick={() => window.location.href = button.urlRedirect!}
+                >
+                  {button.text}
+                </motion.button>
+              )
             ))}
           </div>
         )}
@@ -80,74 +95,93 @@ export default function App() {
       buttons: [
         {
           text: "Ver más",
-          urlRedirect: ""
+          urlRedirect: "/intro-influenza",
+          component: <IntroInfluenza />
         }
       ],
       imgSrc: "virus-sm.png"
     },
     {
       id: 2,
-      text: 'Funcionamiento del ARNm',
+      text: 'Objetivo del Estudio',
       buttons: [
         {
           text: "Ver más",
-          urlRedirect: ""
+          urlRedirect: "/study-objective",
+          component: <StudyObjective />
         }
       ],
       imgSrc: "MRNA.png"
     },
     {
       id: 3,
-      text: 'Respuesta Inmune',
+      text: 'Diseño y Preparación de la Vacuna',
       buttons: [
         {
           text: "Ver más",
-          urlRedirect: ""
+          urlRedirect: "/vacuum-design",
+          component: <VacuumDesign />
         }
       ],
       imgSrc: "respuesta_inmune.png"
     },
     {
       id: 4,
-      text: 'Pruebas de Laboratorio',
+      text: 'Evaluación de la Inmunogenicidad',
       buttons: [
         {
           text: "Ver más",
-          urlRedirect: ""
+          urlRedirect: "/lab-tests",
+          component: <LabTests />
         }
       ],
       imgSrc: "test_laboratory.png"
     },
     {
       id: 5,
-      text: 'Estudios en ratones',
+      text: 'Respuesta Inmune Celular y Humoral',
       buttons: [
         {
           text: "Ver más",
-          urlRedirect: ""
-        }
-      ],
-      imgSrc: "mouse.png"
-    },
-    {
-      id: 6,
-      text: 'Conclusiones',
-      buttons: [
-        {
-          text: "Ver más",
-          urlRedirect: ""
+          urlRedirect: "/response-celular",
+          component: <ResponseCelular />
         }
       ],
       imgSrc: "conclusion.png"
+    },
+    {
+      id: 6,
+      text: 'Desafíos y Protección In Vivo',
+      buttons: [
+        {
+          text: "Ver más",
+          urlRedirect: "/mouse-study",
+          component: <MouseStudy />
+        }
+      ],
+      imgSrc: "mouse.png"
     }
-  ]
+  ];
 
   return (
-    <>
-      {sections.map((section) => (
-        <Section section={section} />
-      ))}
-      <motion.div className="progress" style={{ scaleX }} />
-    </>
+    <Router>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={
+          <>
+            {sections.map((section) => (
+              <Section key={section.id} section={section} />
+            ))}
+            <motion.div className="progress" style={{ scaleX }} />
+          </>
+        } />
+        <Route path="/intro-influenza" element={<IntroInfluenza />} />
+        <Route path="/study-objective" element={<StudyObjective />} />
+        <Route path="/vacuum-design" element={<VacuumDesign />} />
+        <Route path="/lab-tests" element={<LabTests />} />
+        <Route path="/response-celular" element={<ResponseCelular />} />
+        <Route path="/mouse-study" element={<MouseStudy />} />
+      </Routes>
+    </Router>
   );
 }

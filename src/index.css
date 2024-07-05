@@ -46,23 +46,31 @@ h1 {
   line-height: 1.2;
   text-align: center;
   margin: 100px 0;
- 
+
 }
 
 h2 {
   margin: 0;
   z-index: 9999;
   color: white;
-  font-size: 2em; /* Ajusta el tamaño según necesites */
+  font-size: 2em;
+  /* Ajusta el tamaño según necesites */
   font-weight: bold;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.85); /* Fondo más opaco */
-  padding: 20px; /* Añade espacio alrededor del texto */
+  background-color: rgba(0, 0, 0, 0.85);
+  /* Fondo más opaco */
+  padding: 20px;
+  /* Añade espacio alrededor del texto */
   border-radius: 5px;
-  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9); /* Sombra del texto más fuerte */
-  border: 2px solid white; /* Añade un borde al texto */
-  width: 80%; /* Asegura que el fondo cubra todo el texto */
-  box-sizing: border-box; /* Incluye el padding en el tamaño del elemento */
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.9);
+  /* Sombra del texto más fuerte */
+  border: 2px solid white;
+  /* Añade un borde al texto */
+  width: 80%;
+  /* Asegura que el fondo cubra todo el texto */
+  box-sizing: border-box;
+  /* Incluye el padding en el tamaño del elemento */
+  word-wrap: break-word; /* Permite que el texto se divida para evitar desbordamiento */
 }
 
 section {
@@ -75,6 +83,7 @@ section {
   perspective: 500px;
   flex-direction: column;
 }
+
 .progress {
   position: fixed;
   left: 0;
@@ -116,4 +125,58 @@ button {
 .container {
   display: flex;
   justify-content: center;
+}
+
+
+.section-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.section-content img {
+  max-width: 100%;
+  height: auto;
+  margin: 20px 0;
+}
+
+.section-content h1 {
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: 1.2;
+  margin: 20px 0;
+}
+
+.section-content p {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 20px 0;
+}
+
+p,li {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 20px 0;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+strong {
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 20px 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  
+}
+
+h3 {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  margin: 20px 0;
+  width: 100%;
 }
