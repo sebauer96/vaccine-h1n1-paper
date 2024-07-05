@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import '../section.css';  // Importa un archivo CSS común para estilos de secciones
@@ -58,7 +57,7 @@ const IntroInfluenza = () => {
             >
                 La influenza, también conocida como gripe, es una enfermedad respiratoria contagiosa causada por los virus de la influenza. Estos virus infectan la nariz, la garganta y, a veces, los pulmones. La influenza puede causar una enfermedad leve a grave y, en ocasiones, puede llevar a la muerte. La mejor forma de prevenir la influenza es vacunándose cada año.
             </motion.p>
-            
+
         </motion.div>
     );
 };
